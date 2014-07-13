@@ -1,4 +1,3 @@
-===========================
 Run Scripts
 ===========================
 
@@ -6,7 +5,6 @@ To run the scripts that generate data you need to access a url with this format:
 
 http://localhost/freight-data-generator/scripts/#scriptName#
 
-===========================
 About
 ===========================
 
