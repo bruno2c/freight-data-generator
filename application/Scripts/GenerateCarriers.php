@@ -1,11 +1,11 @@
 <?php
 
-namespace Scripts;
+namespace FreightDataGenerator\Application\Scripts;
 
-use Core\Scripts\AbstractScript;
-use Helper\QueryHelper;
-use Models\CarrierModel;
-use Tables\Carrier;
+use FreightDataGenerator\Application\Core\Scripts\AbstractScript;
+use FreightDataGenerator\Application\Helper\QueryHelper;
+use FreightDataGenerator\Application\Models\CarrierModel;
+use FreightDataGenerator\Application\Tables\Carrier;
 
 class GenerateCarriers extends AbstractScript
 {

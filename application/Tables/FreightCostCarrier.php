@@ -1,6 +1,6 @@
 <?php
 
-namespace Tables;
+namespace FreightDataGenerator\Application\Tables;
 
 class FreightCostCarrier
 {

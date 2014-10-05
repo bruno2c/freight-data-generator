@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Models;
+namespace FreightDataGenerator\Application\Core\Models;
 
 abstract class AbstractModel
 {
@@ -8,12 +8,12 @@ abstract class AbstractModel
 
     protected function fetchAll($sql)
     {
-        return mysql_query($sql, \Database::getInstance()->getConnection());
+        return mysql_query($sql, \FreightDataGenerator\Config\Database::getInstance()->getConnection());
     }
 
     protected function fetchRow($sql)
     {
-        $resultSet = mysql_query($sql, \Database::getInstance()->getConnection());
+        $resultSet = mysql_query($sql, \FreightDataGenerator\Config\Database::getInstance()->getConnection());
 
         if($resultSet){
             $rows = mysql_fetch_assoc($resultSet);
@@ -30,6 +30,6 @@ abstract class AbstractModel
 
     public function executeQuery($sql)
     {
-        return mysql_query($sql, \Database::getInstance()->getConnection());
+        return mysql_query($sql, \FreightDataGenerator\Config\Database::getInstance()->getConnection());
     }
 }

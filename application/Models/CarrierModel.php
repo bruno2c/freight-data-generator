@@ -1,8 +1,8 @@
 <?php
 
-namespace Models;
+namespace FreightDataGenerator\Application\Models;
 
-use Core\Models\AbstractModel;
+use FreightDataGenerator\Application\Core\Models\AbstractModel;
 
 class CarrierModel extends AbstractModel
 {

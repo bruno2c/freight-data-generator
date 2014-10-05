@@ -1,17 +1,23 @@
 <?php
-require_once '../config/Autoloader.php';
-spl_autoload_register(array('Autoloader', 'load'));
+
+require '../vendor/autoload.php';
 
 define('BASE_PATH', realpath(__DIR__ . "/../"));
 define('APPLICATION_PATH', BASE_PATH . "/application/");
 define('SCRIPT_PATH', BASE_PATH . "/application/Scripts/");
-
-Autoloader::addPath(realpath('../application').DIRECTORY_SEPARATOR);
-Autoloader::addPath(realpath('../config').DIRECTORY_SEPARATOR);
+define('APPLICATION_NAMESPACE', "FreightDataGenerator\Application\\");
 
 try{
-    $bootstrap = Bootstrap::getInstance();
+    $bootstrap = FreightDataGenerator\Config\Bootstrap::getInstance();
     $bootstrap->run();
+
+    $script = $bootstrap->resolveUrl();
+
+    if($script){
+		$script->execute();
+
+		echo "RAN";
+    }
 } catch(Exception $e){
     echo $e->getMessage();
 }

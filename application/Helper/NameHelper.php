@@ -1,6 +1,6 @@
 <?php
 
-namespace Helper;
+namespace FreightDataGenerator\Application\Helper;
 
 class NameHelper 
 {

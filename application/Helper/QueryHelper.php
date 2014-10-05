@@ -1,12 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: debiandev
- * Date: 2/12/14
- * Time: 10:20 PM
- */
-
-namespace Helper;
+namespace FreightDataGenerator\Application\Helper;
 
 class QueryHelper 
 {

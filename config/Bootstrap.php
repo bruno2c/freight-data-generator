@@ -1,5 +1,7 @@
 <?php
 
+namespace FreightDataGenerator\Config;
+
 class Bootstrap 
 {
     private static $instance;
@@ -41,11 +43,14 @@ class Bootstrap
     public function run()
     {
         $this->connectDb();
+    }
 
+    public function resolveUrl()
+    {
         $requestUri = str_replace($this->getBaseUrl(), '', $_SERVER['REQUEST_URI']);
         $path = explode('/', $requestUri);
         $requestFile = ucfirst($path[count($path)-1]) . ".php";
-        $requestClass = '';
+        $requestClass = APPLICATION_NAMESPACE;
 
         if ($path) {
             foreach ($path as $key => $file) {
@@ -57,7 +62,7 @@ class Bootstrap
             }
 
             if(file_exists(SCRIPT_PATH . $requestFile)){
-                new $requestClass();
+                return new $requestClass();
             }
         }
     }

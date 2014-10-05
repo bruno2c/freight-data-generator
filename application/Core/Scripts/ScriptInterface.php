@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Scripts;
+namespace FreightDataGenerator\Application\Core\Scripts;
 
 interface ScriptInterface 
 {

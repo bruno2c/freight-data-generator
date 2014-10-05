@@ -1,5 +1,7 @@
 <?php
 
+namespace FreightDataGenerator\Config;
+
 class Database 
 {
     protected static $instance;

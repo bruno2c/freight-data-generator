@@ -1,0 +1,22 @@
+{
+    "name": "bruno2c/freight-data-generator",
+    "authors": [
+        {
+            "name": "Bruno Cardenas",
+            "email": "contact@brunocardenas.com"
+        }
+    ],
+    "require": {
+        "doctrine/annotations": "@stable",
+        "doctrine/lexer": "@stable",
+        "doctrine/migrations": "1.0.*@dev",
+        "doctrine/dbal": "@stable",
+        "symfony/console": "@stable"
+    },
+	"autoload": {
+        "psr-4": {
+            "FreightDataGenerator\\Config\\": "config/",
+            "FreightDataGenerator\\Application\\": "application/"
+        }
+    }
+}

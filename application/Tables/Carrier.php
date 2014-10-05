@@ -1,8 +1,8 @@
 <?php
 
-namespace Tables;
+namespace FreightDataGenerator\Application\Tables;
 
-use Helper\NameHelper;
+use FreightDataGenerator\Application\Helper\NameHelper;
 
 class Carrier 
 {
@@ -10,6 +10,7 @@ class Carrier
     protected $cnpj;
     protected $description;
     protected $name;
+
     /**
      * @var NameHelper
      */

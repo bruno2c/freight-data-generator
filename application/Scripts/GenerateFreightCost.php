@@ -1,11 +1,11 @@
 <?php
 
-namespace Scripts;
+namespace FreightDataGenerator\Application\Scripts;
 
-use Core\Scripts\AbstractScript;
-use Helper\QueryHelper;
-use Models\CepModel;
-use Tables\FreightCostCarrier;
+use FreightDataGenerator\Application\Core\Scripts\AbstractScript;
+use FreightDataGenerator\Application\Helper\QueryHelper;
+use FreightDataGenerator\Application\Models\CepModel;
+use FreightDataGenerator\Application\Tables\FreightCostCarrier;
 
 class GenerateFreightCost extends AbstractScript
 {
