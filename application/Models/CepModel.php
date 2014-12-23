@@ -26,7 +26,7 @@ class CepModel extends AbstractModel
             $partialCep = $this->validCepRange[$random];
             unset($this->validCepRange[$random]);
 
-            $sql = sprintf("SELECT MIN(cep) as start, MAX(cep) as final from endereco_completo where cep like '%d%%'", $partialCep);
+            $sql = sprintf("SELECT MIN(postcode) as start, MAX(postcode) as final, city, state from address where postcode like '%d%%'", $partialCep);
             $cepRange = $this->fetchRow($sql);
 
             if(!empty($cepRange['start'])){

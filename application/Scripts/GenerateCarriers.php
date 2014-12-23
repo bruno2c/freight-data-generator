@@ -13,7 +13,7 @@ class GenerateCarriers extends AbstractScript
     {
         $model = new CarrierModel();
 
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 30; $i++) {
             $carrier = new Carrier();
             $queryHelper = new QueryHelper($carrier, 'carrier');
             $sql = $queryHelper->getSqlInsertStatement();

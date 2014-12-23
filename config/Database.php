@@ -89,8 +89,8 @@ class Database
     public function getConnection()
     {
         if(empty($this->connection)){
-            $this->connection = mysql_connect($this->server, $this->username, $this->password);
-            mysql_select_db($this->dbname, $this->connection);
+            $connectionString = sprintf('mysql:host=%s;dbname=%s;user', $this->getServer(), $this->getDbname());
+            $this->connection = new \PDO($connectionString, $this->username, $this->password);
         }
 
         return $this->connection;

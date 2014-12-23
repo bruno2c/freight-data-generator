@@ -4,34 +4,42 @@ namespace FreightDataGenerator\Application\Scripts;
 
 use FreightDataGenerator\Application\Core\Scripts\AbstractScript;
 use FreightDataGenerator\Application\Helper\QueryHelper;
-use FreightDataGenerator\Application\Models\CepModel;
+use FreightDataGenerator\Application\Models\AddressModel;
+use FreightDataGenerator\Application\Models\CarrierModel;
 use FreightDataGenerator\Application\Tables\FreightCostCarrier;
 
 class GenerateFreightCost extends AbstractScript
 {
     public function execute()
     {
-        $model = new CepModel();
+        $model = new AddressModel();
+        $carrierModel = new CarrierModel();
         $cepAlreadyUsed = array();
 
-        for ($n = 0; $n < 10000; $n++) {
-            $range = $model->getCepRange();
+        $totalLines = 50000;
+        $linesPerPostcode = 10;
+        $forceGeneration = false;
+        $weight = 500;
+        $maxIteration = $weight * $linesPerPostcode;
 
-            if (!empty($range) && !in_array($range['start'], $cepAlreadyUsed)) {
-                for ($weight = 500; $weight < 20000; $weight = $weight + 500) {
-                    $freightCostCarrier = new FreightCostCarrier();
-                    $freightCostCarrier->setCarrierId(2);
-                    $freightCostCarrier->setStartCep($range['start']);
-                    $freightCostCarrier->setFinalCep($range['final']);
-                    $freightCostCarrier->setStartWeight($weight);
-                    $freightCostCarrier->setFinalWeight($weight + 1000);
+        $carrierId = $carrierModel->getRandomCarrierId();
+        $ranges = $model->getRangeNotInFreightCost($totalLines);
+        $ranges = $model->getRangeNotInFreightCostByCarrier($carrierId['id'], $totalLines);
 
-                    $queryHelper = new QueryHelper($freightCostCarrier, 'freight_cost_carrier');
-                    $sql = $queryHelper->getSqlInsertStatement();
-                    $model->executeQuery($sql);
-                }
+        foreach ($ranges as $range) {
+            for ($i = $weight; $i <= $maxIteration; $i = $i + $weight) {
+                $freightCostCarrier = new FreightCostCarrier();
+                $freightCostCarrier->setCarrierId($carrierId['id']);
+                $freightCostCarrier->setStartCep($range['start']);
+                $freightCostCarrier->setFinalCep($range['final']);
+                $freightCostCarrier->setCapital($range['city']);
+                $freightCostCarrier->setState($range['state']);
+                $freightCostCarrier->setStartWeight($i);
+                $freightCostCarrier->setFinalWeight($i + 1000);
 
-                $cepAlreadyUsed[] = $range['start'];
+                $queryHelper = new QueryHelper($freightCostCarrier, 'freight_cost_carrier');
+                $sql = $queryHelper->getSqlInsertStatement();
+                $model->executeQuery($sql);
             }
         }
     }

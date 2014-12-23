@@ -8,28 +8,23 @@ abstract class AbstractModel
 
     protected function fetchAll($sql)
     {
-        return mysql_query($sql, \FreightDataGenerator\Config\Database::getInstance()->getConnection());
+        $pdo = \FreightDataGenerator\Config\Database::getInstance()->getConnection();
+        $statement = $pdo->prepare($sql);
+        $statement->execute();
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     protected function fetchRow($sql)
     {
-        $resultSet = mysql_query($sql, \FreightDataGenerator\Config\Database::getInstance()->getConnection());
-
-        if($resultSet){
-            $rows = mysql_fetch_assoc($resultSet);
-
-            if($rows){
-                return $rows;
-            }
-        } else {
-            throw new \RuntimeException(mysql_error());
-        }
-
-        return null;
+        $pdo = \FreightDataGenerator\Config\Database::getInstance()->getConnection();
+        $statement = $pdo->prepare($sql);
+        $statement->execute();
+        return $statement->fetch(\PDO::FETCH_ASSOC);
     }
 
     public function executeQuery($sql)
     {
-        return mysql_query($sql, \FreightDataGenerator\Config\Database::getInstance()->getConnection());
+        $pdo = \FreightDataGenerator\Config\Database::getInstance()->getConnection();
+        return $pdo->query($sql);
     }
 }

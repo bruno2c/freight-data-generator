@@ -18,7 +18,19 @@ class NameHelper
     public function getCarrierName()
     {
         $maxRand = count($this->fileDataArray);
-        return $this->fileDataArray[mt_rand(0, $maxRand - 1)] . " Carrier LTDA";
+        return ucfirst($this->fileDataArray[mt_rand(0, $maxRand - 1)]) . " Carrier LTDA";
+    }
+
+    public function getAddress()
+    {
+        $maxRand = count($this->fileDataArray);
+        return "Rua " . utf8_decode($this->fileDataArray[mt_rand(0, $maxRand - 1)]);
+    }
+
+    public function getRandomFromFile()
+    {
+        $maxRand = count($this->fileDataArray);
+        return utf8_decode($this->fileDataArray[mt_rand(0, $maxRand - 1)]);
     }
 
     public function getCnpj()

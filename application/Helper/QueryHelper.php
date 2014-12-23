@@ -32,7 +32,7 @@ class QueryHelper
                 continue;
             }
 
-            $get = "get".str_replace(' ', '', ucwords(str_replace('_', '', $property->getName())));
+            $get = "get".str_replace(' ', '', ucwords(str_replace('_', ' ', $property->getName())));
 
             if(method_exists($this->object, $get)){
                 $fields .= $property->getName() . ", ";
